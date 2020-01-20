@@ -1,6 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const htmlRoute = require("./routes/html-routes");
+const userApiRoute = require("./routes/api-routes");
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,10 +12,13 @@ const app = express();
 
 app.use(logger("dev"));
 
+app.use(express.static(__dirname + "/public"));
+//Store all HTML files in view folder.
+
+app.use(htmlRoute);
+app.use(userApiRoute);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(require("./routes/api-routs.js"));
-app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true
