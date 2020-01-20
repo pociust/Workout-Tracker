@@ -11,6 +11,26 @@ router.post("/api/workouts", (req, res) => {
     });
 });
 
+router.get("/api/workouts/:id", (req, res) => {
+  Workout.findOne({ _id: req.params.id })
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// router.post("/api/workouts/:id", (req, res) => {
+//   Workout.updateOne({ id: req.id }, { $push: { exercises: req.body } }, done)
+//     .then(dbWorkout => {
+//       res.json(dbWorkout);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
+
 router.get("/api/workouts", (req, res) => {
   Workout.find({})
     .then(dbWorkout => {
