@@ -9,14 +9,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(logger("dev"));
-
 app.use(express.static(__dirname + "/public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //Store all HTML files in view folder.
 
 app.use(htmlRoute);
 app.use(userApiRoute);
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true
