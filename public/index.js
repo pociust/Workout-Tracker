@@ -123,6 +123,12 @@ function handleToastAnimationEnd() {
   }
 }
 
+async function createANewWorkout() {
+  let workout = await API.createWorkout();
+
+  location.replace(`/exercise?id=${workout.id}`);
+}
+
 function clearInputs() {
   cardioNameInput.value = "";
   nameInput.value = "";
