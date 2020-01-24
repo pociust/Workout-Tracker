@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 //Store all HTML files in view folder.
 
 app.use(htmlRoute);
+
 app.use(userApiRoute);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
